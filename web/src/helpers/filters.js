@@ -2,23 +2,21 @@ import moment from 'moment'
 import { formatTime, timeSelectOptions} from '../helpers/bookingForm'
 
 // Initial room filter parameters
-export const floorParams = [ {name: '8', value: false}, {name: '13', value: false}, {name: 'all', value: false}]
+export const floorParams = [ {name: 'Stora skolan', value: false}, {name: 'Spetsen', value: false}, {name: 'all', value: false}]
 
 // initial feature filter parameters
 export const filterParams = [ 
-  {name: 'macLab', value: false},
-  {name: 'pcLab', value: false},
+  {name: 'whiteboard', value: false},
+  {name: 'dator', value: false},
   {name: 'tv', value: false},
-  {name: 'opWalls', value: false},
   {name: 'projector', value: false} ]
 
 // Initial Capacity parameters
 export const capacityParams = [
-  {capacity: 16, id: '16seats', value: false},
-  {capacity: 18, id: '18seats', value: false},
-  {capacity: 20, id: '20seats', value: false},
-  {capacity: 24, id: '24seats', value: false},
-  {capacity: 40, id: '40seats', value: false},
+  {capacity: 1, id: '1seats', value: false},
+  {capacity: 6, id: '6seats', value: false},
+  {capacity: 12, id: '12seats', value: false},
+  {capacity: 14, id: '14seats', value: false},
 ]
 
 // Filtering Functions
@@ -35,14 +33,14 @@ export  const onFilterByFloor = (param, filteredData) => {
 // Filter data by feature
 export const onFilterByFeature = (params, filteredData) => {
   params.forEach(feature => {
-    if (feature.name === 'macLab' && feature.value === true) {
-      filteredData = filteredData.filter(room => room.assets.macLab === true)
-    } else if (feature.name === 'pcLab' && feature.value === true) {
-      filteredData = filteredData.filter(room => room.assets.pcLab === true)
+    if (feature.name === 'whiteboard' && feature.value === true) {
+      console.log(feature.name+ "  --  ")
+      console.log(filteredData);
+      filteredData = filteredData.filter(room => room.assets.whiteboard === true)
+    } else if (feature.name === 'dator' && feature.value === true) {
+      filteredData = filteredData.filter(room => room.assets.dator === true)
     } else if (feature.name === 'tv' && feature.value === true) {
       filteredData = filteredData.filter(room => room.assets.tv === true)
-    } else if (feature.name === 'opWall' && feature.value === true) {
-      filteredData = filteredData.filter(room => room.assets.opWalls === true)
     } else if (feature.name === 'projector' && feature.value === true) {
       filteredData = filteredData.filter(room => room.assets.projector === true)
     }
@@ -75,6 +73,9 @@ export const onFilterByAvailablity = (params, filteredData) => {
     filteredData =
       !filteredData.filter(room => room.bookings.length > 0) &&
       !filteredData.filter(room => room.bookings.length === 0)
+  }
+  else if (params === 'all') {
+    filteredData =filteredData      
   }
   return filteredData
 }

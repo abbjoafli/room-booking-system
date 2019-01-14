@@ -1,9 +1,5 @@
 const express = require('express')
-const {
-  signUp,
-  signIn,
-  signJWTForUser
-} = require('../middleware/auth')
+const { signUp, signIn, signJWTForUser } = require('../middleware/auth')
 
 const router = new express.Router()
 

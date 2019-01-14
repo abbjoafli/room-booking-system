@@ -9,13 +9,13 @@ const BookingFormTable = props => (
         <th colSpan="2" className="table__cell--header table__cell--level header__heading header__heading--column">{moment(props.date).format('MMMM Do YYYY')}</th>
       </tr>
       <tr scope="col" className="table__row table__row--subheader">
-        <th className="table__cell--header">Time</th>
-        <th className="table__cell--header">Bookings</th>
+        <th className="table__cell--header">Tid</th>
+        <th className="table__cell--header">Bokningar</th>
       </tr>
     </thead>
     <tbody className="table__body--booking">
       <tr className="table__row--full">
-        <th scope="row">8am</th>
+        <th scope="row">8</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -24,7 +24,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">9am</th>
+        <th scope="row">9</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -33,7 +33,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">10am</th>
+        <th scope="row">10</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -42,7 +42,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">11am</th>
+        <th scope="row">11</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -51,7 +51,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">12pm</th>
+        <th scope="row">12</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -60,7 +60,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">1pm</th>
+        <th scope="row">13</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -69,7 +69,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">2pm</th>
+        <th scope="row">14</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -78,7 +78,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">3pm</th>
+        <th scope="row">15</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -87,7 +87,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">4pm</th>
+        <th scope="row">16</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -96,7 +96,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">5pm</th>
+        <th scope="row">17</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -105,7 +105,7 @@ const BookingFormTable = props => (
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">6pm</th>
+        <th scope="row">18</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
@@ -113,24 +113,7 @@ const BookingFormTable = props => (
             onShowBooking={props.onShowBooking}
           />
       </tr>
-      <tr className="table__row--full">
-        <th scope="row">7pm</th>
-          <ColumnCell
-            date={props.date}
-            bookings={props.roomData.bookings}
-            hour={19}
-            onShowBooking={props.onShowBooking}
-          />
-      </tr>
-      <tr className="table__row--full">
-        <th scope="row">8pm</th>
-          <ColumnCell
-            date={props.date}
-            bookings={props.roomData.bookings}
-            hour={20}
-            onShowBooking={props.onShowBooking}
-          />
-      </tr>
+    
     </tbody>
   </table>
 )

@@ -11,8 +11,8 @@ function BookingElement({
 }) {
 
   const roomInfo = findRoomInfo(bookingData.roomId, roomData)
-  const startTime = momentTimezone.tz(bookingData.bookingStart, 'Australia/Sydney').format('h.mma')
-  const endTime = momentTimezone.tz(bookingData.bookingEnd, 'Australia/Sydney').format('h.mma')
+  const startTime = momentTimezone.tz(bookingData.bookingStart, 'Europe/Stockholm').format('h.m')
+  const endTime = momentTimezone.tz(bookingData.bookingEnd, 'Europe/Stockholm').format('h.m')
 
   return (
     <div className="booking__box">
@@ -22,14 +22,14 @@ function BookingElement({
         <p>{bookingData.purpose}</p>
       </div>
       <div className="booking__innerbox--middle">
-        <p>From {startTime} to {endTime}</p>
-        <p>Duration {bookingData.duration}hrs</p>
-        <p>Level {roomInfo.floor}, {roomInfo.name}</p>
+        <p>Från {startTime} till {endTime}</p>
+        <p>Tid {bookingData.duration} timmar</p>
+        <p>På {roomInfo.floor}, {roomInfo.name}</p>
       </div>
       <div className="booking__innerbox--right">
         <Button
           onClick={() => onDeleteBooking(bookingData.roomId, bookingData._id)}
-          text={`Delete`}
+          text={`Ta bort`}
         />
       </div>
     </div>

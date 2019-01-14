@@ -9,6 +9,9 @@ export function rememberToken(token) {
   }
   else {
     // Clear token from local storage
+       localStorage.removeItem("Name");
+      localStorage.removeItem("Mail");
+      localStorage.removeItem("Klass");
     localStorage.removeItem(key)
   }
 }

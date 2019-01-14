@@ -3,28 +3,27 @@ const JWT = require('jsonwebtoken')
 const PassportJWT = require('passport-jwt')
 const User = require('../models/User')
 
-const jwtSecret = process.env.JWT_SECRET
-const jwtAlgorithm = process.env.JWT_ALGORITHM
-const jwtExpiresIn = process.env.JWT_EXPIRES_IN
+const jwtSecret = 'eyJqd3RTZWNyZXQiOiJhcGEifQ'
+const jwtAlgorithm = 'HS256'
+const jwtExpiresIn = 2240
 
 passport.use(User.createStrategy())
 
 const signUp = (req, res, next) => {
-
   if (!req.body.email || !req.body.password) {
-    res.status(400).send('No username or password provided.')
+    res.status(400).send('Inget användarnamn eller lösenord försett.')
   }
 
   const user = new User({
     email: req.body.email,
     firstName: req.body.firstName,
-    lastName: req.body.lastName
+    lastName: req.body.lastName,
+    klass: req.body.klass
   })
 
   User.register(user, req.body.password, (error, user) => {
     if (error) {
       next(error)
-      return
     }
   })
 
@@ -45,7 +44,14 @@ const signJWTForUser = (req, res) => {
       subject: user._id.toString()
     }
   )
-  res.json({ token })
+  User.findOne({ email: user.email }, function(err, usr) {
+    if (err) res.send(err)
+    console.log(usr)
+    res.json({
+      token: token,
+      user: usr
+    })
+  })
 }
 
 passport.use(

@@ -9,7 +9,6 @@ const ColumnCell = props => {
   // Add the day's bookings to a 24 hour array
   let dayHours = bookingArray(bookings)
 
-  console.log(dayHours)
 
   // Extract the corresponding data for a single hour from the 24 hour array
   let bookingData = dayHours[props.hour]
@@ -20,7 +19,7 @@ const ColumnCell = props => {
   // If the data for that hour is a number (not a booking object), there is no booking
   // Return a <td> element that indicates the time slot is available
   if (typeof bookingData == 'number') {
-    columnData = <td className="table__cell--available">Available</td>
+    columnData = <td className="table__cell--available">Tillgänglig</td>
 
   // If the data for that hour is an array, this means there are two bookings to be rendered
   } else if (Array.isArray(bookingData)) {
@@ -74,7 +73,7 @@ const ColumnCell = props => {
               </td>
             </tr>
             <tr className="table__row--no-border">
-              <td className="table__cell--subcell available">Available</td>
+              <td className="table__cell--subcell available">Tillgänglig</td>
             </tr>
           </tbody>
         </table>
@@ -85,7 +84,7 @@ const ColumnCell = props => {
         <table className="table--nested">
           <tbody>
           <tr className="table__row--no-border table__row--border-bottom">
-              <td className="table__cell--subcell available">Available</td>
+              <td className="table__cell--subcell available">Tillgänglig</td>
             </tr>
             <tr className="table__row--no-border">
           <td onClick={() => props.onShowBooking(bookingData)} className={`table__cell--${bookingData.businessUnit

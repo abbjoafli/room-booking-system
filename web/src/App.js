@@ -51,8 +51,11 @@ class App extends Component {
   }
 
   // Pass supplied first name, lastname, email & password to the signUp function, returns the user's token
-  onSignUp = ({ firstName, lastName, email, password }) => {
-    signUp({ firstName, lastName, email, password }).then(decodedToken => {
+  onSignUp = ({ firstName, lastName, email, password , klass}) => {
+    localStorage.setItem("Name", firstName+" "+lastName);
+    localStorage.setItem("Mail", email);
+    localStorage.setItem("Klass",klass);
+    signUp({ firstName, lastName, email, password ,klass}).then(decodedToken => {
       this.setState({ decodedToken })
     })
   }
@@ -76,6 +79,7 @@ class App extends Component {
 
   onShowBooking = booking => {
     const selectedBooking = booking
+    console.log(this.state.decodedToken);
     console.log('selectedBooking', selectedBooking)
     this.setState(() => ({ selectedBooking }))
   }
@@ -258,10 +262,12 @@ class App extends Component {
                   (<Redirect to="/bookings" />) :
                   (<div className="wrapper__form">
                       <div className="header__page">
-                        <h2 className="header__heading header__heading--sub--alt">Sign in with email</h2>
+                      <h1 className="header__heading header__heading--main abb">ABB Industrigymnasium</h1>
+
+                        <h2 className="header__heading header__heading--sub--alt">Logga in med mailadress</h2>
                       </div>
                       <SignInForm onSignIn={this.onSignIn} />
-                      <h3 className="header__heading header__heading--sub--alt">Don't have an account?</h3>
+                      <h3 className="header__heading header__heading--sub--alt">Har du inget konto?</h3>
                       <SignUpForm onSignUp={this.onSignUp} />
                     </div>
                   )
@@ -277,7 +283,7 @@ class App extends Component {
                     {!!decodedToken && !!roomData && !loading && (
                       <div className="wrapper">
                         <div className="header header__nav header--flex">
-                          <h1 className="header__heading header__heading--main">Company Name Here</h1>
+                          <h1 className="header__heading header__heading--main abb">ABB Industrigymnasium</h1>
                           <NavBar
                             signOut={signOut}
                             loadMyBookings={loadMyBookings}
@@ -286,7 +292,7 @@ class App extends Component {
                         </div>
                         <div className="wrapper__content">
                           <div className="header__page">
-                            <h2 className="header__heading header__heading--sub">Book a room | {moment(calendarDate).format('MMMM Do YYYY')}</h2>
+                            <h2 className="header__heading header__heading--sub">Boka ett rum | {moment(calendarDate).format('MMMM Do YYYY')}</h2>
                           </div>
                           <div className="sidebar">
                             <div className="sidebar__box">
@@ -308,9 +314,9 @@ class App extends Component {
                                 date={calendarDate}
                               />
                             </div>
-                            <div className="sidebar__box">
+                            {/* <div className="sidebar__box">
                               <Key />
-                            </div>
+                            </div> */}
                           </div>
                           <div className="content">
                             <RoomsList
@@ -342,7 +348,7 @@ class App extends Component {
                         !!currentRoom && (
                           <div className="wrapper">
                             <header className="header header__nav header--flex">
-                              <h1 className="header__heading header__heading--main">Company Name Here</h1>
+                            <h1 className="header__heading header__heading--main abb">ABB Industrigymnasium</h1>
                               <NavBar
                                 signOut={signOut}
                                 loadMyBookings={loadMyBookings}
@@ -380,7 +386,7 @@ class App extends Component {
                         !!roomData && (
                           <div className="wrapper">
                             <div className="header header__nav header--flex">
-                              <h1 className="header__heading header__heading--main">Company Name Here</h1>
+                              <h1 className="header__heading header__heading--main abb">ABB Industrigymnasium</h1>
                               <NavBar
                                 signOut={signOut}
                                 loadMyBookings={loadMyBookings}
@@ -389,7 +395,7 @@ class App extends Component {
                             </div>
                             <div className="wrapper__content--bookings">
                               <div className="header__page">
-                                <h2 className="header__heading header__heading--sub">My Bookings</h2>
+                                <h2 className="header__heading header__heading--sub">Mina bokningar</h2>
                               </div>
                               <MyBookings
                                 roomData={roomData}

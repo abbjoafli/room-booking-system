@@ -7,7 +7,7 @@ const rowMapper = (dayHours, props) => {
   let tableRow = []
 
   // Loop through each hour from 8AM to 9PM (starting at 8AM = 0)
-  for (var i = 0; i < 13; i++) {
+  for (var i = 0; i < 11; i++) {
     // Extract the corresponding data from the 24 hour array
     let bookingData = dayHours[i + 8]
 
@@ -94,7 +94,7 @@ const RoomRow = props => (
       {Object.keys(props.room.assets).map(
         asset =>
           props.room.assets[asset] && (
-            <li key={asset} onClick={props.onShowBooking} className="table__data--asset">{formatAssetName(asset)}</li>
+           <Link to="/createbooking" onClick={() => props.onSetRoom(props.room._id)} className="table__data--asset"> <li key={asset}  >{formatAssetName(asset)}</li></Link>
             )
           )}
       </ul>

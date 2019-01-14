@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = props => (
   <footer className="footer">
-    <p>Coder Academy Class Project</p>
+    <p>Rumsbokningsystem 2019-01-09 ABB Industrigymnasium</p>
   </footer>
 )
 

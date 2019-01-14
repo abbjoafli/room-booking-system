@@ -13,7 +13,9 @@ function MyBookings({
     <div className="wrapper__bookings">
       <div className="booking__user-info">
         <div className="avatar"><img src={Avatar}/></div>
+        <h2>{localStorage.getItem("Name")}</h2>
         <h2>{user}</h2>
+        <h2>{localStorage.getItem("Klass")}</h2>
       </div>
       <div className="user-booking-container">
         { !!userBookings ?
@@ -25,7 +27,7 @@ function MyBookings({
                 bookingData={userBookings[key]}
                 onDeleteBooking={onDeleteBooking}
               />)
-           ) : (<p>You have not yet made any bookings</p>)
+           ) : (<p>Du har inte bokat några rum.</p>)
         }
       </div>
     </div>

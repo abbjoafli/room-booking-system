@@ -2,9 +2,10 @@ import api, { setToken } from './init'
 import { getDecodedToken } from './token'
 
 // Sends a POST request to /auth/sign-up on the server, with first name, last name, email & password registering the user and returning the JWT
-export function signUp({ firstName, lastName, email, password }) {
-  return api.post('/auth/sign-up', { firstName, lastName, email, password })
+export function signUp({ firstName, lastName, email, password, klass }) {
+  return api.post('/auth/sign-up', { firstName, lastName, email, password , klass})
     .then(res => {
+      console.log(res);
       const token = res.data.token
       setToken(token)
       return getDecodedToken()
@@ -16,6 +17,10 @@ export function signUp({ firstName, lastName, email, password }) {
 export function signIn({ email, password }) {
   return api.post('/auth', { email, password })
     .then(res => {
+      localStorage.setItem("Name", res.data.user.firstName+" "+res.data.user.lastName);
+      localStorage.setItem("Mail", res.data.user.email);
+      localStorage.setItem("Klass",res.data.user.klass);
+      console.dir(res.data);
       const token = res.data.token
       setToken(token)
       return getDecodedToken()

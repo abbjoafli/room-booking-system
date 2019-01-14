@@ -6,7 +6,7 @@ import api from './init'
 // Data expected in [year, month, date, hours, seconds] format
 const dateUTC = (dataArray) => {
   // Ensure date data is saved in AEST and then converted to a Date object in UTC
-  return momentTimezone(dataArray).tz('Australia/Sydney').toDate()
+  return momentTimezone(dataArray).tz('Europe/Stockholm').toDate()
 }
 
 // Make a room booking
@@ -14,7 +14,6 @@ export function makeBooking(data, existingBookings) {
   // Convert booking data to UTC Date objects
   let bookingStart = dateUTC(data.startDate)
   let bookingEnd = dateUTC(data.endDate)
-
   // Convert booking Date objects into a number value
   let newBookingStart = bookingStart.getTime()
   let newBookingEnd = bookingEnd.getTime()
@@ -43,6 +42,8 @@ export function makeBooking(data, existingBookings) {
   let validRecurring = (data.recurringData.length > 0) ? 
     dateUTC(data.recurringData[0]).getTime() > newBookingEnd : true
 
+    console.log(data);
+    console.log(localStorage.getItem("Mail"));
   // Save the booking to the database and return the booking if there are no clashes and the new booking time is not in the past
   if (!bookingClash && validDate && validRecurring) {
     return api.put(`/rooms/${data.roomId}`, {
@@ -51,7 +52,9 @@ export function makeBooking(data, existingBookings) {
       businessUnit: data.businessUnit,
       purpose: data.purpose,
       roomId: data.roomId,
-      recurring: data.recurringData
+      recurring: data.recurringData,
+      mail: localStorage.getItem("Mail"),
+      name: localStorage.getItem("Name")
     })
       .then(res => res.data)
       .catch(err => alert(err.response.data.error.message.match(/error:.+/i)[0]))
