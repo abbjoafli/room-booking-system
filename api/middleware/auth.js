@@ -3,9 +3,9 @@ const JWT = require('jsonwebtoken')
 const PassportJWT = require('passport-jwt')
 const User = require('../models/User')
 
-const jwtSecret = 'eyJqd3RTZWNyZXQiOiJhcGEifQ'
-const jwtAlgorithm = 'HS256'
-const jwtExpiresIn = 2240
+const jwtSecret = process.env.JWT_SECRET 
+const jwtAlgorithm = jwtAlgorithm
+const jwtExpiresIn = jwtExpiresIn
 
 passport.use(User.createStrategy())
 

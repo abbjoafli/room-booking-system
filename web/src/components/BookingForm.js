@@ -109,18 +109,6 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           </div>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'Business Unit'}
-              <select name="business" defaultValue="Business Unit 1" className="form__input form__input--select">
-                <option value="Business Unit 1">Business Unit 1</option>
-                <option value="Business Unit 2">Business Unit 2</option>
-                <option value="Business Unit 3">Business Unit 3</option>
-                <option value="Business Unit 4">Business Unit 4</option>
-                <option value="Business Unit 5">Business Unit 5</option>
-              </select>
-            </label>
-          </div>
-          <div className="form__group">
-            <label className="form__label form__label--booking">
               {'Återkommande'}
               <span>
                 <select name="recurring" defaultValue="none" onChange={(event) => onToggleRecurring(event.target.value)} className="form__input form__input--select">

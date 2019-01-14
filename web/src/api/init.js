@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { rememberToken, getValidToken } from './token'
 
-const baseURL = "http://localhost:7000" //process.env.REACT_APP_API_URL //http://10.22.2.109:7000 //Lokalhost
+const baseURL = process.env.REACT_APP_API_URL //http://10.22.2.109:7000 //Lokalhost
 
 // Create an axios instance
 const api = axios.create({
