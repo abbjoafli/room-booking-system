@@ -3,10 +3,14 @@ import moment from 'moment'
 import ColumnCell from './ColumnCell'
 
 const BookingFormTable = props => (
-  <table className="table--booking">
+  <table className={ "table--booking fine " + ( props.extraheader ? props.extraheader : "") } >
     <thead>
       <tr className="table__row table__row--header">
-        <th colSpan="2" className="table__cell--header table__cell--level header__heading header__heading--column">{moment(props.date).format('MMMM Do YYYY')}</th>
+      {props.specnamn ? <th colSpan="2" className="table__cell--header table__cell--level header__heading header__heading--column">{props.specnamn}</th>
+:  <th colSpan="2" className="table__cell--header table__cell--level header__heading header__heading--column">{moment(props.date).format('MMMM Do YYYY')}</th> }
+         
+
+       
       </tr>
       <tr scope="col" className="table__row table__row--subheader">
         <th className="table__cell--header">Tid</th>

@@ -62,7 +62,9 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             // endDate data
             const endTime = formatTime(formData.endTime.value)
             const endDate = [...dateArray, ...endTime]
-         
+          console.log(roomData)
+          console.log(date)
+          console.log(onShowBooking)
             // Booking specifics
             const businessUnit = localStorage.getItem("Klass")
             let recurringEnd = handleEndDate(formData.recurringEndDate.value.split('-'))
@@ -104,6 +106,18 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
                 {endTimeSelectOptions.map(option => {
                   return option
                 })}
+              </select>
+            </label>
+          </div>
+          <div className="form__group">
+            <label className="form__label form__label--booking">
+              {'Business Unit'}
+              <select name="business" defaultValue="Business Unit 1" className="form__input form__input--select">
+                <option value="Business Unit 1">Business Unit 1</option>
+                <option value="Business Unit 2">Business Unit 2</option>
+                <option value="Business Unit 3">Business Unit 3</option>
+                <option value="Business Unit 4">Business Unit 4</option>
+                <option value="Business Unit 5">Business Unit 5</option>
               </select>
             </label>
           </div>
