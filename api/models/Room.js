@@ -12,6 +12,7 @@ const bookingSchema = new Schema({
   startHour: Number,
   duration: Number,
   recurring: [],
+  description: {type:String},
   businessUnit: { type: String, required: true },
   purpose: { type: String, required: true },
   roomId: { type: Schema.ObjectId, ref: 'Room' }
@@ -39,10 +40,10 @@ bookingSchema.path('bookingStart').validate(function(value) {
         existingBookingStart < newBookingEnd)
     ) {
       throw new Error(
-        `Booking could not be saved. There is a clash with an existing booking from ${moment(
+        `Bokningen kunde inte sparas, det krockar med en annan bokning från ${moment(
           existingBookingStart
-        ).format('HH:mm')} to ${moment(existingBookingEnd).format(
-          'HH:mm on LL'
+        ).format('H.mm')} to ${moment(existingBookingEnd).format(
+          'H:mm på LL'
         )}`
       )
     }

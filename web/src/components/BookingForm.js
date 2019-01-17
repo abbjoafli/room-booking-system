@@ -8,9 +8,9 @@ import { formatTime, startTimeSelectOptions, endTimeSelectOptions } from '../hel
 
 function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onShowBooking, disableRecurring, onToggleRecurring }) {
   // Disable sunday (day 0) on the calendar as an booking option
-  const valid = function(current) {
-    return current.day() !== 0
-  }
+  const valid =function( current ){
+    return current.day() !== 0 && current.day() !== 6;
+  };
 
   const handleEndDate = (dateArray) => {
     let recurringEndDate = []
@@ -62,9 +62,6 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             // endDate data
             const endTime = formatTime(formData.endTime.value)
             const endDate = [...dateArray, ...endTime]
-          console.log(roomData)
-          console.log(date)
-          console.log(onShowBooking)
             // Booking specifics
             const businessUnit = localStorage.getItem("Klass")
             let recurringEnd = handleEndDate(formData.recurringEndDate.value.split('-'))
@@ -72,7 +69,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             let recurringData = handleRecurringData(recurringType, recurringEnd)
             const purpose = formData.purpose.value
             const description = formData.description.value
-          onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData })
+          onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description })
         }}>
         <div className="content__calendar">
           <Datetime
@@ -109,18 +106,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
               </select>
             </label>
           </div>
-          <div className="form__group">
-            <label className="form__label form__label--booking">
-              {'Business Unit'}
-              <select name="business" defaultValue="Business Unit 1" className="form__input form__input--select">
-                <option value="Business Unit 1">Business Unit 1</option>
-                <option value="Business Unit 2">Business Unit 2</option>
-                <option value="Business Unit 3">Business Unit 3</option>
-                <option value="Business Unit 4">Business Unit 4</option>
-                <option value="Business Unit 5">Business Unit 5</option>
-              </select>
-            </label>
-          </div>
+          
           <div className="form__group">
             <label className="form__label form__label--booking">
               {'Återkommande'}
@@ -135,12 +121,12 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             </label>
           </div>
           <label className="form__label form__label--booking">
-            {'Recurring end date'}
+            {'Slutdatum för återkommande'}
             <input type="date" name="recurringEndDate" disabled={disableRecurring} className="form__input--date"/>
           </label>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'Purpose'}
+              {'Syfte'}
               <select name="purpose" defaultValue="Scheduled class" className="form__input form__input--select">
                 <option value="lektion">Lektion</option>
                 <option value="gruppmöte">Gruppmöte</option>
@@ -151,8 +137,8 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           </div>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'Description'}
-              <textarea type="textarea" name="description" className="form__input--textarea"></textarea>
+              {'Beskrivning'}
+              <textarea type="textarea" name="description" id="description" className="form__input--textarea"></textarea>
             </label>
           </div>
           <div className="form__group--button">

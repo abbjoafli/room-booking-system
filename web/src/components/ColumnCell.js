@@ -69,7 +69,7 @@ const ColumnCell = props => {
                 .toLowerCase()} table__cell--subcell`
                 }
               >
-                {bookingData.businessUnit}
+             {bookingData.businessUnit==="personal" ? "Personal": bookingData.businessUnit}
               </td>
             </tr>
             <tr className="table__row--no-border">
@@ -92,7 +92,7 @@ const ColumnCell = props => {
                   .toLowerCase()} table__cell--subcell`
                 }
               >
-                {bookingData.businessUnit}
+              {bookingData.businessUnit==="personal" ? "Personal": bookingData.businessUnit}
               </td>
             </tr>
           </tbody>
@@ -107,7 +107,8 @@ const ColumnCell = props => {
           .replace(/ /g, '-')
           .toLowerCase()}`
         }>
-          {bookingData.businessUnit}
+        {bookingData.businessUnit==="personal" ? "Personal": bookingData.businessUnit}
+          
       </td>
   }
   return columnData

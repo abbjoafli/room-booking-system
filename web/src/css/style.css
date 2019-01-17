@@ -13,6 +13,11 @@
 .table--booking td {
   text-align: center;
 }
+.clocka{
+  margin-top:50px;
+  margin-left: 40px;
+  float:left;
+}
 .clock{
   margin-left: 50px;
   margin-top: 100px;
@@ -728,7 +733,7 @@ td.rdtYear:hover {
 
 .table__cell--1802 {
   background: #ffd670;
-  /* padding: 3rem 0; */
+  border-top: 1rem solid #ffd670;
   cursor: pointer;
 }
 .table__cell--1802.table__cell--first-half-hour {
@@ -749,7 +754,6 @@ td.rdtYear:hover {
 }
 .table__cell--1803 {
   background: #ef709d;
-
   border-top: 1rem solid #ef709d;
   cursor: pointer;
 }
@@ -790,6 +794,29 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
+
+.table__cell--personal {
+  background: #ee8a19;
+  border-top: 1rem solid #ee8a19;
+  cursor: pointer;
+}
+.table__cell--personal.table__cell--first-half-hour {
+  background: #ee8a19;
+  cursor: pointer;
+  display: block;
+  float: left;
+  padding: 3rem 0;
+  width: 50%;
+}
+.table__cell--personal.table__cell--second-half-hour {
+  background: #ee8a19;
+  cursor: pointer;
+  display: block;
+  float: right;
+  padding: 3rem 0;
+  width: 50%;
+}
+
 .table__cell--1702 {
   background: #85ffc7;
   border-top: 1rem solid #85ffc7;
@@ -1033,6 +1060,7 @@ li {
   font-weight: 700;
   margin: 2.2rem 0 4.2rem 0;
   padding: 1rem 0;
+  margin-left: 30px;
 }
 .header__heading--sub--alt {
   border-bottom: 0.2rem solid #1c1c1c;

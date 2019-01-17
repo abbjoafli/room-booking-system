@@ -1,7 +1,11 @@
 import React from 'react'
 import Datetime from 'react-datetime'
 
-const validDate = current => current.day() !== 0
+// const validDate = current => current.day() !== 0  && current.day() !== 6
+
+const validDate =function( current ){
+  return current.day() !== 0 && current.day() !== 6;
+};
 
 const Calendar = props => (
   <Datetime

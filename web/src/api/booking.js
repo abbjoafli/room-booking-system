@@ -42,8 +42,6 @@ export function makeBooking(data, existingBookings) {
   let validRecurring = (data.recurringData.length > 0) ? 
     dateUTC(data.recurringData[0]).getTime() > newBookingEnd : true
 
-    console.log(data);
-    console.log(localStorage.getItem("Mail"));
   // Save the booking to the database and return the booking if there are no clashes and the new booking time is not in the past
   if (!bookingClash && validDate && validRecurring) {
     return api.put(`/rooms/${data.roomId}`, {
@@ -52,7 +50,8 @@ export function makeBooking(data, existingBookings) {
       businessUnit: data.businessUnit,
       purpose: data.purpose,
       roomId: data.roomId,
-      recurring: data.recurringData,
+      recurring: data.recurringData,      
+      description: data.description,
       mail: localStorage.getItem("Mail"),
       name: localStorage.getItem("Name")
     })

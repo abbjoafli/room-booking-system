@@ -11,13 +11,13 @@ function BookingElement({
 }) {
 
   const roomInfo = findRoomInfo(bookingData.roomId, roomData)
-  const startTime = momentTimezone.tz(bookingData.bookingStart, 'Europe/Stockholm').format('h.m')
-  const endTime = momentTimezone.tz(bookingData.bookingEnd, 'Europe/Stockholm').format('h.m')
+  const startTime = momentTimezone.tz(bookingData.bookingStart, 'Europe/Stockholm').format('H.mm')
+  const endTime = momentTimezone.tz(bookingData.bookingEnd, 'Europe/Stockholm').format('H.mm')
 
   return (
     <div className="booking__box">
       <div className="booking__innerbox--left">
-        <h3 className="header__heading--sub--alt header__heading--small">{moment(bookingData.bookingStart).format('dddd, MMMM Do YYYY')}</h3>
+        <h3 className="header__heading--sub--alt header__heading--small">{moment(bookingData.bookingStart).format('dddd, Do MMMM YYYY')}</h3>
         <p>{bookingData.businessUnit}</p>
         <p>{bookingData.purpose}</p>
       </div>

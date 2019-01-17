@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 import momentTimezone from 'moment-timezone'
+import moment from 'moment'
 import Button from './Button'
 import { findRoomInfo } from '../helpers/bookingForm.js'
 
@@ -25,19 +26,30 @@ const BookingModal = props => {
       closeTimeoutMS={200}
       className="modal"
     >
+    {/* Do MMMM YYYY */}
       <h3 className="modal__title">Boknings detaljer</h3>
       {!!props.selectedBooking && (
         <div className="modal__boday">
           <p className="modal__paragraph">{findRoomInfo(props.selectedBooking.roomId, props.roomData).name}{', på '}
           {findRoomInfo(props.selectedBooking.roomId, props.roomData).floor}</p>
-          <p className="modal__paragraph">{`${momentTimezone
+          <p className="modal__paragraph">Från {`${momentTimezone
               .tz(props.selectedBooking['bookingStart'], 'Europe/Stockholm')
-            .format('h.m')} to ${momentTimezone
+            .format('H.mm')} till ${momentTimezone
               .tz(props.selectedBooking['bookingEnd'], 'Europe/Stockholm')
-              .format('h.m')}`}
-            <p className="modal__paragraph">{`${momentTimezone.tz(props.selectedBooking['bookingStart'], 'Europe/Stockholm').format('MMMM D, YYYY')} to ${momentTimezone.tz(props.selectedBooking['bookingEnd'], 'Europe/Stockholm').format('MMMM D, YYYY')}`}
+              .format('H.mm')}`}
+
+</p>
+            <p className="modal__paragraph">{moment().format('Do MMMM YYYY')===momentTimezone.tz(props.selectedBooking['bookingStart'],
+             'Europe/Stockholm').format('Do MMMM YYYY')  ? "Idag":moment(new Date()).add(1, "days").format('Do MMMM YYYY')===momentTimezone.tz(props.selectedBooking['bookingStart'],
+             'Europe/Stockholm').format('Do MMMM YYYY')  ? "Imorgon":momentTimezone.tz(props.selectedBooking['bookingStart'],
+             'Europe/Stockholm').format('Do MMMM YYYY')===momentTimezone.tz(props.selectedBooking['bookingEnd'],
+             'Europe/Stockholm').format('Do MMMM YYYY')?momentTimezone.tz(props.selectedBooking['bookingStart'],
+             'Europe/Stockholm').format('Do MMMM YYYY'):`Från ${momentTimezone.tz(props.selectedBooking['bookingStart'],
+             'Europe/Stockholm').format('Do MMMM YYYY')} till 
+             ${momentTimezone.tz(props.selectedBooking['bookingEnd'], 
+             'Europe/Stockholm').format('Do MMMM YYYY')}`}
           </p>
-          </p>
+          {console.dir(props.selectedBooking)}
           <p className="modal__paragraph"><strong>Bokat av </strong>{props.selectedBooking['name']}</p>
           <p className="modal__paragraph"><strong>Klass </strong>{props.selectedBooking['businessUnit']}</p>
           <p className="modal__paragraph"><strong>Syfte </strong>{props.selectedBooking['purpose']}</p>

@@ -45,6 +45,7 @@ const durationHours = (bookingStart, bookingEnd) => {
 // Make a booking
 router.put('/rooms/:id', requireJWT, (req, res) => {
   const { id } = req.params
+  console.log(req.body)
   // If the recurring array is empty, the booking is not recurring
   if (req.body.recurring.length === 0) {
     Room.findByIdAndUpdate(

@@ -87,8 +87,6 @@ class App extends Component {
 
   onShowBooking = booking => {
     const selectedBooking = booking;
-    console.log(this.state.decodedToken);
-    console.log("selectedBooking", selectedBooking);
     this.setState(() => ({ selectedBooking }));
   };
 
@@ -103,25 +101,26 @@ class App extends Component {
     businessUnit,
     purpose,
     roomId,
-    recurringData
+    recurringData,
+    description
   }) => {
-    const bookingData = { startDate, endDate, businessUnit, purpose, roomId };
+    const bookingData = { startDate, endDate, businessUnit, purpose, roomId,description };
     const existingBookings = this.state.currentRoom.bookings;
 
     // Check if there is a clash and, if not, save the new booking to the database
     try {
       makeBooking(
-        { startDate, endDate, businessUnit, purpose, roomId, recurringData },
+        { startDate, endDate, businessUnit, purpose, roomId, recurringData,description },
         existingBookings
       ).then(updatedRoom => {
         // If the new booking is successfully saved to the database
-        alert(`${updatedRoom.name} successfully booked.`);
+        alert(`${updatedRoom.name} är framgångsrikt bokat.`);
         updateStateRoom(this, updatedRoom, this.loadMyBookings);
       });
     } catch (err) {
       // If there is a booking clash and the booking could not be saved
       alert(
-        "Your booking could not be saved. Please ensure it does not clash with an existing booking and that it is a valid time in the future."
+        "Din bokning kan inte sparas. Vänligen säkerställ att det inte krockar med en redan existerande bokning och att det är en tid punkt som inte redan varit."
       );
       console.log(err);
     }
@@ -131,7 +130,7 @@ class App extends Component {
   onDeleteBooking = (roomId, bookingId) => {
     deleteBooking(roomId, bookingId)
       .then(updatedRoom => {
-        alert("Booking successfully deleted");
+        alert("Bokingen är bortagen");
         updateStateRoom(this, updatedRoom, this.loadMyBookings);
       })
       .catch(error => console.error(error.message));
@@ -340,7 +339,7 @@ class App extends Component {
                           <div className="header__page">
                             <h2 className="header__heading header__heading--sub">
                               Boka ett rum |{" "}
-                              {moment(calendarDate).format("MMMM Do YYYY")}
+                              {moment(calendarDate).format("Do MMMM YYYY")}
                             </h2>
                           </div>
                           <div className="sidebar">

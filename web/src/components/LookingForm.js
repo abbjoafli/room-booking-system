@@ -21,22 +21,24 @@ class LookingForm extends React.Component {
 
   changeroom(roomnumber)
   {
-    console.log(this.state.Allroom[roomnumber].name)
     this.setState({ Chosenroom: roomnumber }) 
-  
   }
 
   componentDidMount() {
     this.props.listRooms().then(res => this.setState({ Allroom: res }));
-    console.dir(this.state.Allroom);
     if(moment().isoWeekday()==4||moment().isoWeekday()==5)
     this.setState({ weekenddays: 2 })
     setInterval(
       () => this.setState({ Clockdate: new Date() }),
       1000
     );
-    console.log(moment().isoWeekday())
+    setInterval(  () => this.tick() , 10000); 
+
   }
+  tick()
+{
+  this.props.listRooms().then(res => this.setState({ Allroom: res }));
+}
 
   render() {
     if (this.state.Allroom.length === 0) {
@@ -48,6 +50,9 @@ class LookingForm extends React.Component {
         <Link to="/"  ><img className="back" src="https://img.icons8.com/metro/1600/circled-left-2.png" ></img> </Link>
           <h2 className="header__heading header__heading--sub buttons">
             Bokningar {this.state.Allroom[this.state.Chosenroom].name}
+          </h2>
+          <h2 className="clocka">
+            {moment().format('H:mm:ss')}
           </h2>
           <div>
         <Clock className="clock"
@@ -74,13 +79,14 @@ class LookingForm extends React.Component {
           />
           <BookingFormTable
             extraheader="sameview"
-            specnamn="Imorgon"
+            specnamn={moment().isoWeekday() ==5  ? "Måndag":"Imorgon"}
             roomData={this.state.Allroom[this.state.Chosenroom]}
             date={ moment().isoWeekday() ==5  ? moment(new Date()).add(1+this.state.weekenddays, "days"):  moment(new Date()).add(1, "days")}
             onShowBooking={this.props.onShowBooking}
           />
           <BookingFormTable
             extraheader="sameview"
+            specnamn={moment().isoWeekday() ==4  ? "Måndag":moment().isoWeekday() ==5  ? "Tisdag":null}
             roomData={this.state.Allroom[this.state.Chosenroom]}
             date={moment().isoWeekday() ==4 || moment().isoWeekday() ==5  ? moment(new Date()).add(2+this.state.weekenddays, "days"):  moment(new Date()).add(2, "days")}
             onShowBooking={this.props.onShowBooking}

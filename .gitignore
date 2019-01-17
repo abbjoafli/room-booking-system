@@ -1,3 +1,6 @@
 
 web/.env.production
 web/src/api/init.js
+api/config.js
+web/public/.htaccess
+web/src/api/init.js

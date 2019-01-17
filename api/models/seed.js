@@ -11,22 +11,7 @@ Room.create([
       whiteboard: true
     }
   },
-  {
-    name: 'Grupprum 1',
-    floor: 'Stora skolan',
-    capacity: 6,
-    assets: {
-      whiteboard: true
-    }
-  },
-  {
-    name: 'Grupprum 2',
-    floor: 'Stora skolan',
-    capacity: 6,
-    assets: {
-      whiteboard: true
-    }
-  },
+  
   {
     name: 'Konferansrum',
     floor: 'Spetsen',
@@ -34,30 +19,6 @@ Room.create([
     assets: {
       whiteboard: true,
       projector: true
-    }
-  },
-  {
-    name: 'Enmannarum',
-    floor: 'Stora skolan',
-    capacity: 1,
-    assets: {
-      whiteboard: true
-    }
-  },
-  {
-    name: 'Enmannarum 2',
-    floor: 'Stora skolan',
-    capacity: 1,
-    assets: {
-      whiteboard: true
-    }
-  },
-  {
-    name: 'Enmannarum 3',
-    floor: 'Stora skolan',
-    capacity: 1,
-    assets: {
-      whiteboard: true
     }
   }
 ])

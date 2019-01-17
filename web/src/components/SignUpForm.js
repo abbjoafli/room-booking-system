@@ -41,6 +41,7 @@ function SignUpForm({ onSignUp }) {
                 <option value="1602">1602</option>
                 <option value="1603">1603</option>
                 <option value="1604">1604</option>
+                <option value="personal">Personal</option>
               </select>
             </label>
           </div>
