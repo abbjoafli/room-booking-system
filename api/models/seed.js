@@ -11,7 +11,6 @@ Room.create([
       whiteboard: true
     }
   },
-  
   {
     name: 'Konferansrum',
     floor: 'Spetsen',
@@ -19,6 +18,22 @@ Room.create([
     assets: {
       whiteboard: true,
       projector: true
+    }
+  },
+  {
+    name: 'Grupprum 1',
+    floor: 'Stora skolan',
+    capacity: 8,
+    assets: {
+      whiteboard: true
+    }
+  },
+  {
+    name: 'Grupprum 2',
+    floor: 'Stora skolan',
+    capacity: 7,
+    assets: {
+      whiteboard: true
     }
   }
 ])

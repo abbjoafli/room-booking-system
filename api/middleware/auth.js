@@ -48,8 +48,12 @@ const signJWTForUser = (req, res) => {
     }
   )
   User.findOne({ email: user.email }, function(err, usr) {
-    if (err) res.send(err)
+    if (err)
+    {
+       res.send(err)
     console.log(usr)
+    }
+    else
     res.json({
       token: token,
       user: usr

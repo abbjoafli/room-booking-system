@@ -12,6 +12,7 @@ function SignUpForm({ onSignUp }) {
         const password = elements.password.value
         const klass = elements.class.value
         onSignUp({ firstName, lastName, email, password,klass })
+        window.location.reload();
       }}
     >
       <div className="form__group">

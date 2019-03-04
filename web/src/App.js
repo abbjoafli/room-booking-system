@@ -130,7 +130,7 @@ class App extends Component {
   onDeleteBooking = (roomId, bookingId) => {
     deleteBooking(roomId, bookingId)
       .then(updatedRoom => {
-        alert("Bokingen är bortagen");
+        alert("Bokingen är borttagen");
         updateStateRoom(this, updatedRoom, this.loadMyBookings);
       })
       .catch(error => console.error(error.message));

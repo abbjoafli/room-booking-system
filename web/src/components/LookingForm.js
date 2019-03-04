@@ -2,10 +2,9 @@ import React, { Fragment } from "react";
 import BookingFormTable from "./BookingFormTable";
 import BookingModal from "./BookingModal";
 import {Link} from 'react-router-dom'
-import Datetime from "react-datetime";
 import moment from "moment";
-import Button from "./Button";
 import Clock from 'react-clock';
+import Qrcode from '../assets/qrcodetoabb.png'
 
 class LookingForm extends React.Component {
   constructor(props) {
@@ -42,13 +41,13 @@ class LookingForm extends React.Component {
 
   render() {
     if (this.state.Allroom.length === 0) {
-      return <div>Loading...</div>;
+      return <div>Laddar...om det laddar för länge så kontakta admin</div>;
     }
     return (
       <Fragment>
         <div className="header__page">
         <Link to="/"  ><img className="back" src="https://img.icons8.com/metro/1600/circled-left-2.png" ></img> </Link>
-          <h2 className="header__heading header__heading--sub buttons">
+          <h2 className="header__heading header__heading--sub buttons" id="top">
             Bokningar {this.state.Allroom[this.state.Chosenroom].name}
           </h2>
           <h2 className="clocka">
@@ -60,7 +59,10 @@ class LookingForm extends React.Component {
           size="350"
           renderNumbers="true"
         />
+        <div className="Qr"><img src={Qrcode}/>
+        <h1>iot.abbindustrigymnasium.se</h1></div>
       </div>
+    
         </div>
 
         <div className="content__table">

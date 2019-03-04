@@ -60,7 +60,7 @@ const BookingModal = props => {
       {!!props.selectedBooking && props.user!==props.selectedBooking['mail'] && (
          <a href={`mailto:${props.user}`} className="button">Kontakta bokaren</a>
       )}
-      {!!props.selectedBooking && props.user===props.selectedBooking['mail'] && (
+      {!!props.selectedBooking && props.user===props.selectedBooking['mail']&& (
          <Button
         onClick={deleteBooking}
         text={`Ta bort`}
